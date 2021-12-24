@@ -1,0 +1,46 @@
+<form novaliadte (submit)="submit()">
+  <div class="form-group">
+    <label for="distanceKm">Количество километров</label
+    ><input
+      [(ngModel)]="distanceKm"
+      id="distanceKm"
+      type="text"
+      class="form-control"
+      name="distanceKm"
+    />
+  </div>
+  <div class="form-group">
+    <label for="age">Возраст</label
+    ><input [(ngModel)]="age" type="text" class="form-control" name="age" />
+  </div>
+  <div class="form-group">
+    <label for="baggageWeight">Вес багажа</label
+    ><input
+      [(ngModel)]="baggageWeight"
+      id="baggageWeight"
+      type="text"
+      class="form-control"
+      name="baggageWeight"
+    />
+  </div>
+
+  <button type="submit" class="btn">Рассчитать</button>
+</form>
+
+<div *ngIf="tariffList" class="tariff">
+  <h2>Предложения:</h2>
+  <div *ngIf="tariffList.length > 0">
+    <div *ngFor="let company of companyList" class="tariff__list">
+      <p class="tariff__list-company">
+        <b>{{ company }}</b>
+      </p>
+      <div *ngFor="let tariff of tariffList">
+        <div
+          *ngIf="tariff.companyName === company && tariff.totalPrice !== null"
+        >
+          <p>{{ tariff.tariffName }}: {{ tariff.totalPrice }} &#x20bd;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
